@@ -16,7 +16,7 @@ LDWeaver::LDWeaver(dset = dset,
                    pos = pos, 
                    gff3_path = gff_path,
                    ref_fasta_path = ref_fasta_path,
-                   perform_SR_analysis_only = T, SnpEff_Annotate = T, save_additional_outputs = F)
+                   perform_SR_analysis_only = T, SnpEff_Annotate = T, save_additional_outputs = T)
 
 ### GBK RUN with SNP_ONLY_ALIGNMENT
 rm(list=ls())
@@ -31,9 +31,14 @@ LDWeaver::LDWeaver(dset = dset,
                    aln_path = aln_path, aln_has_all_bases = F,
                    pos = pos,
                    gbk_path = gbk_path,
-                   perform_SR_analysis_only = T, SnpEff_Annotate = F, save_additional_outputs = F)
+                   perform_SR_analysis_only = T, SnpEff_Annotate = T, save_additional_outputs = T)
 
 ### CHECK FOR FILE SIMILARITY
+
+s1 = LDWeaver::read_ShortRangeLinks("ec_test_gbk/Temp/sr_links.tsv")
+s2 = LDWeaver::read_ShortRangeLinks("ec_test_gff/Temp/sr_links.tsv")
+all.equal(s1, s2)
+
 s1 = read.csv("ec_test_gbk/Temp/sr_links.tsv", sep = "\t", header = F)
 s2 = read.csv("ec_test_gff/Temp/sr_links.tsv", sep = "\t", header = F)
 all.equal(s1, s2)
