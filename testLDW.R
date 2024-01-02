@@ -3,7 +3,7 @@ if(rstudioapi::isAvailable()) setwd(dirname(rstudioapi::getActiveDocumentContext
 ### GFF3 RUN with SNP_ONLY_ALIGNMENT
 rm(list=ls())
 dset = "ec_test_gff"
-if(file.exists(dset)) unlink(dset)
+if(file.exists(dset)) unlink(dset, recursive = T)
 
 gff_path = "ref.gff3"
 ref_fasta_path = "ref.fa"
@@ -16,12 +16,12 @@ LDWeaver::LDWeaver(dset = dset,
                    pos = pos, 
                    gff3_path = gff_path,
                    ref_fasta_path = ref_fasta_path,
-                   perform_SR_analysis_only = T, SnpEff_Annotate = T, save_additional_outputs = T)
+                   perform_SR_analysis_only = T, SnpEff_Annotate = T, save_additional_outputs = F)
 
 ### GBK RUN with SNP_ONLY_ALIGNMENT
 rm(list=ls())
 dset = "ec_test_gbk"
-if(file.exists(dset)) unlink(dset)
+if(file.exists(dset)) unlink(dset, recursive = T)
 
 gbk_path = "ref.gbk"
 aln_path = "out.fa.gz"
@@ -31,7 +31,7 @@ LDWeaver::LDWeaver(dset = dset,
                    aln_path = aln_path, aln_has_all_bases = F,
                    pos = pos,
                    gbk_path = gbk_path,
-                   perform_SR_analysis_only = T, SnpEff_Annotate = T, save_additional_outputs = T)
+                   perform_SR_analysis_only = T, SnpEff_Annotate = F, save_additional_outputs = F)
 
 ### CHECK FOR FILE SIMILARITY
 s1 = read.csv("ec_test_gbk/Temp/sr_links.tsv", sep = "\t", header = F)
